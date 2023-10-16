@@ -1,0 +1,54 @@
+@import '~@fluentui/react/dist/sass/References';
+
+%bg-gradient-base {
+	content: "";
+	position: absolute;
+	left: 0;
+	width: 100%;
+}
+
+@mixin bg-gradient-base($deg, $pos: "") {
+	background: linear-gradient(#{$deg}, #212727 #{$pos}, rgba(33, 39, 39, 0));
+	@extend %bg-gradient-base;
+}
+
+.sectionFull {
+	height: 100vh;
+	background: #000 url(assets/img/funcoes-do-banco-central-do-brasil.png) no-repeat center top;
+	background-size: cover;
+	@include ms-fontColor-white;
+
+
+	&::before {
+		top: 0;
+		height: 300px;
+		@include bg-gradient-base("180deg");
+	}
+
+	&::after {
+		height: calc(100% - 100px);
+		bottom: 0;
+		@include bg-gradient-base("0deg","40%");
+	}
+
+	& > div {
+		position: relative;
+		z-index: 1;
+	}
+
+	.container {
+		padding-left: 7%;
+	}
+
+	header {
+		height: 80px;
+		padding: 0 7%;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	#destaque-webpart {
+		padding-right: 7%;
+	}
+}

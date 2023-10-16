@@ -1,0 +1,172 @@
+@import "../../../assets/scss/variables";
+@import "~@fluentui/react/dist/sass/References";
+
+$fontColor: #7e8285;
+$fontColorHover: #799eb1;
+
+.minhamesa {
+	.btn-toggle {
+		bottom: 5%;
+		min-width: auto;
+		position: fixed;
+		width: 40px;
+		padding: 20px 0;
+		z-index: 100;
+		border-radius: 5px 0 0 5px;
+		border-color: #e7e7e7;
+		border-right: none;
+
+		&.btn-toggle--open {
+			right: 0;
+			transition: all 1s;
+
+			&:not(.show) {
+				right: -40px;
+			}
+
+			&:hover span {
+				animation: animateIn 0.5s ease-in infinite alternate;
+			}
+		}
+		&.btn-toggle--close {
+			right: 255px;
+			transition: opacity 45ms, right 0.5s 0.2s;
+
+			&:not(.show) {
+				right: -295px;
+			}
+
+			&:hover span {
+				animation: animateOut 0.5s ease-in infinite alternate;
+			}
+		}
+		&:not(.show) {
+			opacity: 0;
+		}
+	}
+}
+
+.panel {
+	.user {
+		margin: 0 5px 20px;
+		display: flex;
+		align-items: center;
+
+		&__avatar {
+			margin-right: 10px;
+			
+			img {
+				border-radius: 50%;
+				width: 48px;
+			}
+		}
+
+		&__info {
+			@include ms-fontWeight-semibold;
+		}
+	}
+
+	.box {
+		background-color: #f0f0f0;
+		padding: 5px;
+		border-radius: $border-radius5;
+		color: $fontColor;
+		@include ms-depth-4;
+
+		&:not(:last-child) {
+			margin-bottom: 20px;
+		}
+
+		&__container {
+			padding: 15px;
+		}
+
+		&__title {
+			background-color: #eaeaea;
+			padding: 5px;
+			border-radius: $border-radius5;
+			margin: 0;
+			@include ms-fontSize-14;
+			@include ms-fontWeight-semibold;
+		}
+
+		a {
+			color: $fontColor;
+
+			&:hover {
+				color: $fontColorHover;
+			}
+		}
+
+		&__list-links {
+			margin: 0;
+			padding: 0;
+			list-style: none;
+
+			li:not(:last-child) {
+				margin-bottom: 10px;
+			}
+
+			a {
+				display: flex;
+				align-items: center;
+				justify-content: flex-start;
+				text-decoration: none;
+
+				&:hover {
+					.icon-container {
+						&::before {
+							background-color: #d8e1e6;
+							transform: scale(1);
+						}
+
+						svg {
+							fill: $fontColorHover;
+						}
+					}
+				}
+			}
+
+			.icon-container {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				width: 36px;
+				height: 36px;
+				margin-right: 10px;
+				background-color: #e0e0e0;
+				border-radius: 50%;
+				position: relative;
+
+				&::before {
+					border-radius: 50%;
+					content: "";
+					display: block;
+					height: 36px;
+					position: absolute;
+					transform: scale(0);
+					transition: all 0.5s;
+					width: 36px;
+					border: 1px solid rgb(123 160 178 / 22%);
+				}
+
+				svg {
+					fill: #7f8384;
+					transition: all 0.5s;
+					z-index: 1;
+				}
+			}
+		}
+	}
+}
+
+@keyframes animateIn {
+	to {
+		transform: translateX(-5px);
+	}
+}
+@keyframes animateOut {
+	to {
+		transform: translateX(5px);
+	}
+}

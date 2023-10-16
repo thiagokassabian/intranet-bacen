@@ -1,0 +1,25 @@
+@import '~@fluentui/react/dist/sass/References';
+
+.listaLinks {
+	display: flex;
+
+	ul {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		display: flex;
+
+		li:not(:last-child) {
+			margin-right: 10px;
+		}
+		
+		a {
+			color: "[theme:link, default:#03787c]";
+			transition: .4s;
+
+			&:hover {
+				color: "[theme:linkHovered, default: #014446]";
+			}
+		}
+	}
+}

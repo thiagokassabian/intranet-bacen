@@ -1,0 +1,56 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/config.2.0.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "home-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/home/HomeWebPart.js",
+          "manifest": "./src/webparts/home/HomeWebPart.manifest.json"
+        }
+      ]
+    },
+    "destaque-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/destaque/DestaqueWebPart.js",
+          "manifest": "./src/webparts/destaque/DestaqueWebPart.manifest.json"
+        }
+      ]
+    },
+    "minha-mesa-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/minhaMesa/MinhaMesaWebPart.js",
+          "manifest": "./src/webparts/minhaMesa/MinhaMesaWebPart.manifest.json"
+        }
+      ]
+    },
+    "saudacao-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/saudacao/SaudacaoWebPart.js",
+          "manifest": "./src/webparts/saudacao/SaudacaoWebPart.manifest.json"
+        }
+      ]
+    },
+    "lista-links-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/listaLinks/ListaLinksWebPart.js",
+          "manifest": "./src/webparts/listaLinks/ListaLinksWebPart.manifest.json"
+        }
+      ]
+    }
+  },
+  "externals": {},
+  "localizedResources": {
+    "HomeWebPartStrings": "lib/webparts/home/loc/{locale}.js",
+    "ControlStrings": "node_modules/@pnp/spfx-controls-react/lib/loc/{locale}.js",
+    "PropertyControlStrings": "node_modules/@pnp/spfx-property-controls/lib/loc/{locale}.js",
+    "DestaqueWebPartStrings": "lib/webparts/destaque/loc/{locale}.js",
+    "MinhaMesaWebPartStrings": "lib/webparts/minhaMesa/loc/{locale}.js",
+    "SaudacaoWebPartStrings": "lib/webparts/saudacao/loc/{locale}.js",
+    "ListaLinksWebPartStrings": "lib/webparts/listaLinks/loc/{locale}.js"
+  }
+}
