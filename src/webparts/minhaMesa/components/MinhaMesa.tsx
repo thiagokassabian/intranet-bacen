@@ -108,7 +108,8 @@ const MinhaMesa: React.FunctionComponent<IMinhaMesaProps> = props => {
 						}
 					},
 					commands: {
-						margin: "10px 0"
+						margin: "10px 0",
+						paddingTop: 0
 					},
 					content: {
 						padding: "0 10px 10px"
@@ -134,7 +135,7 @@ const MinhaMesa: React.FunctionComponent<IMinhaMesaProps> = props => {
 											{listsData[index] && (
 												<ul className={styles["box__list-links"]}>
 													{listsData[index].map(item => (
-														<li key={item.Id}>
+														<li key={item.ID}>
 															<a href={item.Url.Url}>
 																<span className={styles["icon-container"]}>
 																	{item.SVG && parse(item.SVG)}

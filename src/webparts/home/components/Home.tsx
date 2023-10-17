@@ -1,11 +1,11 @@
 import * as React from "react"
 import globalStyles from "../../../Global.module.scss"
-import stylesHome from "./Home.module.scss"
+import styles from "./Home.module.scss"
 import { IHomeProps } from "./IHomeProps"
 // import { escape } from "@microsoft/sp-lodash-subset"
 import Saudacao from "../../saudacao/components/Saudacao"
 import Destaque from "../../destaque/components/Destaque"
-import ListaLinks from "../../listaLinks/components/ListaLinks";
+import ListaLinks from "../../listaLinks/components/ListaLinks"
 import MinhaMesa from "../../minhaMesa/components/MinhaMesa"
 
 const Home: React.FunctionComponent<IHomeProps> = props => {
@@ -28,7 +28,7 @@ const Home: React.FunctionComponent<IHomeProps> = props => {
 	return (
 		<>
 			<MinhaMesa context={context} lists={minhaMesaLists} />
-			<section id={stylesHome.home} className={`${globalStyles.sectionFull}`}>
+			<section className={`${styles.home} ${globalStyles.sectionFull}`}>
 				<div>
 					<header>
 						<a href="#">

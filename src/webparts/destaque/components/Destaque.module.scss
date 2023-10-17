@@ -5,7 +5,8 @@
 	margin: 24px 0;
 
 	.image {
-		padding-bottom: 60%;
+		// padding-bottom: 60%;
+		aspect-ratio: 16 / 9;
 		background-repeat: no-repeat;
 		background-position: center;
 		background-size: 100%;
@@ -27,7 +28,7 @@
 				display: block;
 				width: 65px;
 				height: 1px;
-				background-color: #838383;
+				background-color: #e5e5e5;
 			}
 		}
 
@@ -44,8 +45,11 @@
 
 	a {
 		text-decoration: none;
+		color: "[theme:link]";
 
 		&:hover {
+			color: "[theme:linkHovered]";
+
 			.image {
 				background-size: 105%;
 			}

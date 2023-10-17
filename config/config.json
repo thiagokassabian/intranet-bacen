@@ -41,6 +41,14 @@
           "manifest": "./src/webparts/listaLinks/ListaLinksWebPart.manifest.json"
         }
       ]
+    },
+    "carrossel-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/carrossel/CarrosselWebPart.js",
+          "manifest": "./src/webparts/carrossel/CarrosselWebPart.manifest.json"
+        }
+      ]
     }
   },
   "externals": {},
@@ -51,6 +59,7 @@
     "DestaqueWebPartStrings": "lib/webparts/destaque/loc/{locale}.js",
     "MinhaMesaWebPartStrings": "lib/webparts/minhaMesa/loc/{locale}.js",
     "SaudacaoWebPartStrings": "lib/webparts/saudacao/loc/{locale}.js",
-    "ListaLinksWebPartStrings": "lib/webparts/listaLinks/loc/{locale}.js"
+    "ListaLinksWebPartStrings": "lib/webparts/listaLinks/loc/{locale}.js",
+    "CarrosselWebPartStrings": "lib/webparts/carrossel/loc/{locale}.js"
   }
 }

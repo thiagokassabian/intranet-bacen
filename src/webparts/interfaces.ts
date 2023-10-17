@@ -1,27 +1,18 @@
 import { IFilePickerResult } from "@pnp/spfx-property-controls/lib/PropertyFieldFilePicker";
+import { IODataListItem } from "@microsoft/sp-odata-types"
 
-interface IBase {
-	Id: number;
-	Title: string;
-	GUID: string;
-}
-
-export interface ISitePage extends IBase {
+export interface ISitePage extends IODataListItem {
 	Description: string;
 	Lead: string;
 	BannerImageUrl: IUrl;
 	OData__TopicHeader: string;
+	ImagemDestaque: IImage;
 }
 
-// interface IImage {
-// 	Description: string;
-// 	Url: string;
-// }
-
-export interface IListaLinkItem extends IBase {
+export interface IListaLinkItem extends IODataListItem {
 	Url: IUrl;
 	SVG: string;
-	Imagem: { serverRelativeUrl: string };
+	Imagem: IImage;
 	Ordem: number;
 	Ocultar: boolean;
 }
@@ -29,6 +20,11 @@ export interface IListaLinkItem extends IBase {
 interface IUrl {
 	Description: string;
 	Url: string;
+}
+
+interface IImage {
+	serverRelativeUrl: string;
+	serverUrl: string;
 }
 
 export type IDropdownList = {

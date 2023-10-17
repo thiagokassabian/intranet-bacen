@@ -16,7 +16,12 @@ const Destaque: React.FunctionComponent<IDestaqueProps> = props => {
 	useEffect(() => {
 		if (selectedPageId) {
 			const getPage = async (): Promise<ISitePage> => await sp.web.lists.getByTitle("Páginas do site").items.getById(selectedPageId)()
-			getPage().then(setPage).catch(console.log)
+			getPage()
+				.then(result => {
+					setPage({ ...result, ImagemDestaque: JSON.parse(result.ImagemDestaque.toString()) })
+					console.log({ ...result, ImagemDestaque: JSON.parse(result.ImagemDestaque.toString()) })
+				})
+				.catch(console.log)
 		}
 	}, [selectedPageId])
 
@@ -40,7 +45,9 @@ const Destaque: React.FunctionComponent<IDestaqueProps> = props => {
 									backgroundImage: `url(${
 										selectedSitePage
 											? page
-												? page.BannerImageUrl.Url
+												? page.ImagemDestaque
+													? `${page.ImagemDestaque.serverUrl}${page.ImagemDestaque.serverRelativeUrl}`
+													: ""
 												: ""
 											: destaque.Image
 											? destaque.Image.fileAbsoluteUrl

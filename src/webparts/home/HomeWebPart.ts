@@ -374,7 +374,8 @@ export default class HomeWebPart extends BaseClientSideWebPart<IHomeWebPartProps
 									context: this.context as any,
 									onGetErrorMessage: null as any,
 									deferredValidationTime: 0,
-									key: 'listPickerFieldId'
+									key: 'listPickerFieldId',
+									baseTemplate: 100
 								}),
 								PropertyFieldColorPicker('redesSociaisColor', {
 									label: listaLinksStrings.ColorLabel,

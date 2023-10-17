@@ -18,7 +18,7 @@ $fontColorHover: #799eb1;
 
 		&.btn-toggle--open {
 			right: 0;
-			transition: all 1s;
+			transition: right .4s ease-in-out;
 
 			&:not(.show) {
 				right: -40px;
@@ -30,7 +30,7 @@ $fontColorHover: #799eb1;
 		}
 		&.btn-toggle--close {
 			right: 255px;
-			transition: opacity 45ms, right 0.5s 0.2s;
+			transition: opacity 45ms, right .5s cubic-bezier(0.48, 0.49, 0, 1);
 
 			&:not(.show) {
 				right: -295px;
@@ -162,11 +162,11 @@ $fontColorHover: #799eb1;
 
 @keyframes animateIn {
 	to {
-		transform: translateX(-5px);
+		transform: translateX(-4px);
 	}
 }
 @keyframes animateOut {
 	to {
-		transform: translateX(5px);
+		transform: translateX(4px);
 	}
 }
