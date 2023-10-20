@@ -1,35 +1,30 @@
 {
-  "extends": "./node_modules/@microsoft/rush-stack-compiler-4.7/includes/tsconfig-web.json",
-  "compilerOptions": {
-    "target": "es5",
-    "forceConsistentCasingInFileNames": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "jsx": "react",
-    "declaration": true,
-    "sourceMap": true,
-    "experimentalDecorators": true,
-    "skipLibCheck": true,
-    "outDir": "lib",
-    "inlineSources": false,
-    "noImplicitAny": true,
+	"extends": "./node_modules/@microsoft/rush-stack-compiler-4.7/includes/tsconfig-web.json",
+	"compilerOptions": {
+		"target": "es5",
+		"forceConsistentCasingInFileNames": true,
+		"module": "esnext",
+		"moduleResolution": "node",
+		"jsx": "react",
+		"declaration": true,
+		"sourceMap": true,
+		"experimentalDecorators": true,
+		"skipLibCheck": true,
+		"outDir": "lib",
+		"inlineSources": false,
+		"noImplicitAny": true,
+		// "allowSyntheticDefaultImports": true, // JSX element class does not support attributes because it does not have a 'props' property.
+		"esModuleInterop": true, // JSX element class does not support attributes because it does not have a 'props' property.
 
-    "typeRoots": [
-      "./node_modules/@types",
-      "./node_modules/@microsoft"
-    ],
-    "types": [
-      "webpack-env"
-    ],
-    "lib": [
-      "es5",
-      "dom",
-      "es2015.collection",
-      "es2015.promise"
-    ]
-  },
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.tsx"
-  ]
+		"typeRoots": ["./node_modules/@types", "./node_modules/@microsoft"],
+		"types": ["webpack-env"],
+		"lib": ["es5", "dom", "es2015.collection", "es2015.promise"],
+
+		// Tentando resolver erro ao importar biblioteca externa
+		// JSX element class does not support attributes because it does not have a 'props' property.
+		"paths": {
+			"react": ["./node_modules/@types/react"]
+		}
+	},
+	"include": ["src/**/*.ts", "src/**/*.tsx"]
 }

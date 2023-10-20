@@ -1,2 +1,77 @@
-@import '~@fluentui/react/dist/sass/References.scss';
+@import "~@fluentui/react/dist/sass/References";
 
+@mixin bg-gradient-base($deg, $pos1: "0", $pos2: "100%") {
+	background: linear-gradient(#{$deg}, #212727 #{$pos1}, rgba(33, 39, 39, 0) #{$pos2});
+}
+
+.carrossel {
+	position: relative;
+	overflow: hidden;
+
+	.card {
+		// height: 260px;
+		padding-right: 30px;
+
+		&__content {
+			@include ms-bgColor-white;
+			height: 100%;
+
+			&:hover .card__image {
+				background-size: 105%;
+			}
+		}
+
+		&__image {
+			aspect-ratio: 16 / 9;
+			@include ms-bgColor-gray30;
+			background-size: 100%;
+			background-position: center;
+			transition: background-size 0.5s;
+		}
+
+		&__text {
+			padding: 10px;
+			color: "[theme:BodyText]";
+		}
+	}
+
+	.buttons {
+		.btn {
+			position: absolute;
+			top: 0;
+			height: 100%;
+			background: none;
+			border: none;
+			font-size: 28px;
+			@include ms-fontColor-white;
+			transition: left .5s ease-out, right .5s ease-out, opacity .5s;
+			cursor: pointer;
+
+			&:not(.show) {
+				opacity: 0;
+			}
+
+			&.show {
+				opacity: 1;
+			}
+
+			&__prev {
+				left: 0;
+				@include bg-gradient-base("90deg");
+
+				&:not(.show) {
+					left: -40px;
+				}
+			}
+			&__next {
+				right: 0;
+				@include bg-gradient-base("270deg");
+
+				&:not(.show) {
+					right: -40px;
+				}
+			}
+
+		}
+	}
+}

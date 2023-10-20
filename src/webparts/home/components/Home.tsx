@@ -7,6 +7,7 @@ import Saudacao from "../../saudacao/components/Saudacao"
 import Destaque from "../../destaque/components/Destaque"
 import ListaLinks from "../../listaLinks/components/ListaLinks"
 import MinhaMesa from "../../minhaMesa/components/MinhaMesa"
+import Carrossel from "../../carrossel/components/Carrossel"
 
 const Home: React.FunctionComponent<IHomeProps> = props => {
 	const {
@@ -58,7 +59,9 @@ const Home: React.FunctionComponent<IHomeProps> = props => {
 									selectedSitePage={destaqueSelectedSitePage}
 								/>
 							</div>
-							<div>Carrossel</div>
+							<div>
+								<Carrossel />
+							</div>
 						</div>
 					</main>
 				</div>
