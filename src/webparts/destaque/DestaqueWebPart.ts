@@ -1,5 +1,6 @@
-import * as React from 'react';
-import * as ReactDom from 'react-dom';
+// import { IODataListItem } from '@microsoft/sp-odata-types';
+import React from 'react';
+import ReactDom from 'react-dom';
 import { Version } from '@microsoft/sp-core-library';
 import {
 	IPropertyPaneConfiguration,
@@ -7,16 +8,21 @@ import {
 	PropertyPaneTextField,
 	PropertyPaneDropdown,
 	IPropertyPaneDropdownOption,
+	IPropertyPaneField,
+	IPropertyPaneTextFieldProps,
+	IPropertyPaneDropdownProps,
 } from '@microsoft/sp-property-pane';
 import { BaseClientSideWebPart } from '@microsoft/sp-webpart-base';
 
-import * as strings from 'DestaqueWebPartStrings';
+import strings from 'DestaqueWebPartStrings';
 import Destaque from './components/Destaque';
 import { IDestaqueProps } from './components/IDestaqueProps';
 
-import { PropertyFieldFilePicker, IFilePickerResult } from "@pnp/spfx-property-controls/lib/PropertyFieldFilePicker";
+import { PropertyFieldFilePicker, IFilePickerResult, IPropertyFieldFilePickerProps } from "@pnp/spfx-property-controls/lib/PropertyFieldFilePicker";
 import { getSP } from '../pnpjsConfig';
+import { ISitePage } from '../interfaces';
 
+interface IField extends IPropertyPaneField<IPropertyPaneTextFieldProps | IPropertyFieldFilePickerProps | IPropertyPaneDropdownProps> { }
 export interface IDestaqueWebPartProps {
 	isSitePages: boolean;
 	selectedPage: string;
@@ -59,11 +65,11 @@ export default class DestaqueWebPart extends BaseClientSideWebPart<IDestaqueWebP
 		getSP(this.context);
 
 		const listPages = await this._getPages();
-		// console.log(listPages);
-		this.pages = listPages.map(list => ({ id: list.Id, title: list.Title })).filter(list => list.title !== null);
+		console.log(listPages);
+		this.pages = listPages.filter(list => list.Title !== null && list.ImagemDestaque !== null).map(list => ({ id: list.ID, title: list.Title }));
 	}
 
-	private async _getPages(): Promise<any[]> {
+	private async _getPages(): Promise<ISitePage[]> {
 		const sp = getSP();
 
 		return await sp.web.lists
@@ -88,8 +94,7 @@ export default class DestaqueWebPart extends BaseClientSideWebPart<IDestaqueWebP
 	}
 
 	protected getPropertyPaneConfiguration(): IPropertyPaneConfiguration {
-		// Destaque
-		const highlightFields = [];
+		const fields: IField[] = [];
 		if (!this.properties.isSitePages) {
 			const propertyPanes = [
 				PropertyPaneTextField("title", {
@@ -118,15 +123,18 @@ export default class DestaqueWebPart extends BaseClientSideWebPart<IDestaqueWebP
 				})
 			];
 
-			highlightFields.push(...propertyPanes);
+			fields.push(...propertyPanes);
 		} else {
-			highlightFields.push(PropertyPaneDropdown('selectedPage', {
+			fields.push(PropertyPaneDropdown('selectedPage', {
 				label: strings.SelectedPageFieldLabel,
-				options: this.pages.map(list => {
-					return <IPropertyPaneDropdownOption>{
-						key: list.id, text: list.title,
-					};
-				}),
+				options: [
+					{ key: "", text: "Selecione" },
+					...this.pages.map(list => {
+						return <IPropertyPaneDropdownOption>{
+							key: list.id, text: list.title,
+						};
+					})],
+				selectedKey: ""
 			}));
 		}
 
@@ -143,7 +151,7 @@ export default class DestaqueWebPart extends BaseClientSideWebPart<IDestaqueWebP
 									label: strings.IsSitePagesToggleLabel,
 									checked: false
 								}),
-								...highlightFields
+								...fields
 							]
 						}
 					]

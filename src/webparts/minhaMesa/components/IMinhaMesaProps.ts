@@ -4,4 +4,5 @@ import { IDropdownList } from "../../interfaces";
 export interface IMinhaMesaProps {
 	lists: IDropdownList[];
 	context: WebPartContext;
+	isOpen?: boolean;
 }

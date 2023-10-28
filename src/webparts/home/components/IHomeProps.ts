@@ -1,5 +1,6 @@
 import { WebPartContext } from "@microsoft/sp-webpart-base";
 import { IDestaque, IDropdownList } from "../../interfaces";
+import { IMinhaMesaProps } from "../../minhaMesa/components/IMinhaMesaProps";
 
 export interface IHomeProps {
 	context: WebPartContext;
@@ -23,7 +24,7 @@ export interface IHomeProps {
 
 	// Minha Mesa
 	minhaMesaLists: IDropdownList[];
-
+	minhaMesaProps: IMinhaMesaProps;
 
 	isDarkTheme: boolean;
 	environmentMessage: string;

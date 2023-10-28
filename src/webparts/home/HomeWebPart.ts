@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import * as React from 'react';
-import * as ReactDom from 'react-dom';
+import React from 'react';
+import ReactDom from 'react-dom';
 import { Version } from '@microsoft/sp-core-library';
 import {
 	IPropertyPaneConfiguration,
@@ -10,17 +10,19 @@ import {
 	PropertyPaneDropdown,
 	IPropertyPaneDropdownOption,
 	PropertyPaneButton,
-	IPropertyPaneField
+	IPropertyPaneField,
+	IPropertyPaneTextFieldProps,
+	IPropertyPaneDropdownProps,
+	IPropertyPaneButtonProps
 } from '@microsoft/sp-property-pane';
 import { BaseClientSideWebPart } from '@microsoft/sp-webpart-base';
 import { IReadonlyTheme } from '@microsoft/sp-component-base';
 
-import * as strings from 'HomeWebPartStrings';
-import * as saudacaoStrings from 'SaudacaoWebPartStrings';
-import * as destaqueStrings from 'DestaqueWebPartStrings'
-import * as listaLinksStrings from 'ListaLinksWebPartStrings';
-import * as minhaMesaStrings from 'MinhaMesaWebPartStrings';
-// import * as destaqueStrings from 'DestaqueWebPartStrings';
+import strings from 'HomeWebPartStrings';
+import saudacaoStrings from 'SaudacaoWebPartStrings';
+import destaqueStrings from 'DestaqueWebPartStrings';
+import listaLinksStrings from 'ListaLinksWebPartStrings';
+import minhaMesaStrings from 'MinhaMesaWebPartStrings';
 import Home from './components/Home';
 import { IHomeProps } from './components/IHomeProps';
 
@@ -29,6 +31,8 @@ import { PropertyFieldListPicker, PropertyFieldListPickerOrderBy } from '@pnp/sp
 import { PropertyFieldColorPicker, PropertyFieldColorPickerStyle } from '@pnp/spfx-property-controls/lib/PropertyFieldColorPicker';
 import { getLists, getSP } from '../pnpjsConfig';
 import { IDropdownList } from '../interfaces';
+
+interface IFields extends IPropertyPaneField<IPropertyPaneTextFieldProps | IPropertyPaneDropdownProps | IPropertyPaneButtonProps> { }
 
 export interface IHomeWebPartProps {
 	// Saudacao
@@ -98,6 +102,11 @@ export default class HomeWebPart extends BaseClientSideWebPart<IHomeWebPartProps
 
 				// Minha Mesa
 				minhaMesaLists: this.properties.minhaMesaLists,
+				minhaMesaProps: {
+					lists: this.properties.minhaMesaLists,
+					context: this.context,
+					isOpen: true
+				},
 
 				// base
 				isDarkTheme: this._isDarkTheme,
@@ -112,6 +121,12 @@ export default class HomeWebPart extends BaseClientSideWebPart<IHomeWebPartProps
 
 	protected async onInit(): Promise<void> {
 		getSP(this.context);
+
+		//* Pegar itens de lista de outro site
+		// const webUrl = `${this.context.pageContext.web.absoluteUrl}/sites/Supim01`;
+		// const sp2 = spfi(webUrl).using(SPFx(this.context));
+		// await sp2.web.lists.getByTitle('Fornecedores').items.select('Title', 'ID')().then(console.log);
+
 
 		const sitePages = await this._getSitePages();
 		this.pages = sitePages.map(list => ({ id: list.Id, title: list.Title })).filter(list => list.title !== null);
@@ -143,7 +158,7 @@ export default class HomeWebPart extends BaseClientSideWebPart<IHomeWebPartProps
 			this.properties.minhaMesaLists = lists;
 
 			if (this.properties.minhaMesaDinamicFields.length / 3 >= 1) {
-				const arr = [];
+				const arr: IFields[] = [];
 				for (let i = 0; i < lists.length; i++) {
 					arr.push(...this.MinhaMesaGetPaneFields(i));
 				}
@@ -159,8 +174,8 @@ export default class HomeWebPart extends BaseClientSideWebPart<IHomeWebPartProps
 		}
 	}
 
-	private MinhaMesaGetPaneFields(index: number = 0): IPropertyPaneField<any>[] {
-		const fields: IPropertyPaneField<any>[] = [];
+	private MinhaMesaGetPaneFields(index: number = 0): IFields[] {
+		const fields: IFields[] = [];
 		fields.push(
 			PropertyPaneTextField(`minhaMesaLists[${index}].Title`, {
 				label: minhaMesaStrings.TitleFieldLabel
@@ -211,27 +226,24 @@ export default class HomeWebPart extends BaseClientSideWebPart<IHomeWebPartProps
 			.orderBy("Created", false)();
 	}
 
-	private _getEnvironmentMessage(): Promise<string> {
+	private async _getEnvironmentMessage(): Promise<string> {
 		if (!!this.context.sdks.microsoftTeams) { // running in Teams, office.com or Outlook
-			return this.context.sdks.microsoftTeams.teamsJs.app.getContext()
-				.then(context => {
-					let environmentMessage: string = '';
-					switch (context.app.host.name) {
-						case 'Office': // running in Office
-							environmentMessage = this.context.isServedFromLocalhost ? strings.AppLocalEnvironmentOffice : strings.AppOfficeEnvironment;
-							break;
-						case 'Outlook': // running in Outlook
-							environmentMessage = this.context.isServedFromLocalhost ? strings.AppLocalEnvironmentOutlook : strings.AppOutlookEnvironment;
-							break;
-						case 'Teams': // running in Teams
-							environmentMessage = this.context.isServedFromLocalhost ? strings.AppLocalEnvironmentTeams : strings.AppTeamsTabEnvironment;
-							break;
-						default:
-							throw new Error('Unknown host');
-					}
-
-					return environmentMessage;
-				});
+			const context = await this.context.sdks.microsoftTeams.teamsJs.app.getContext();
+			let environmentMessage: string = '';
+			switch (context.app.host.name) {
+				case 'Office': // running in Office
+					environmentMessage = this.context.isServedFromLocalhost ? strings.AppLocalEnvironmentOffice : strings.AppOfficeEnvironment;
+					break;
+				case 'Outlook': // running in Outlook
+					environmentMessage = this.context.isServedFromLocalhost ? strings.AppLocalEnvironmentOutlook : strings.AppOutlookEnvironment;
+					break;
+				case 'Teams': // running in Teams
+					environmentMessage = this.context.isServedFromLocalhost ? strings.AppLocalEnvironmentTeams : strings.AppTeamsTabEnvironment;
+					break;
+				default:
+					throw new Error('Unknown host');
+			}
+			return environmentMessage;
 		}
 
 		return Promise.resolve(this.context.isServedFromLocalhost ? strings.AppLocalEnvironmentSharePoint : strings.AppSharePointEnvironment);
@@ -243,9 +255,7 @@ export default class HomeWebPart extends BaseClientSideWebPart<IHomeWebPartProps
 		}
 
 		this._isDarkTheme = !!currentTheme.isInverted;
-		const {
-			semanticColors
-		} = currentTheme;
+		const { semanticColors } = currentTheme;
 
 		if (semanticColors) {
 			this.domElement.style.setProperty('--bodyText', semanticColors.bodyText || null);
@@ -277,7 +287,7 @@ export default class HomeWebPart extends BaseClientSideWebPart<IHomeWebPartProps
 		}
 
 		// Destaque
-		const destaqueFields: IPropertyPaneField<any>[] = [];
+		const destaqueFields: IFields[] = [];
 		if (!this.properties.destaqueIsSitePages) {
 			const propertyPanes = [
 				PropertyPaneTextField("destaqueTitle", {

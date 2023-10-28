@@ -1,0 +1,51 @@
+:root {
+	--transition-speed: .5s;
+}
+
+.minhaMesa__panel .ms-Panel-main,
+.minhaMesa__panel .ms-Panel-commands,
+.minhaMesa__panel .box__title,
+.minhaMesa__panel .box,
+.minhaMesa__panel .box__container,
+.minhaMesa__panel .icon-container,
+.minhaMesa__panel .link-title,
+.minhaMesa__panel .box__list-links {
+	transition: var(--transition-speed);
+}
+
+.minhaMesa__panel .ms-Panel-main { right: -180px; }
+.minhaMesa__panel.is-open .ms-Panel-main { right: 0; }
+
+.minhaMesa__panel .ms-Panel-commands { 
+	max-height: 32px;
+	transition-delay: .3s;
+	position: unset;
+}
+.minhaMesa__panel .box__title { max-height: 30px; }
+
+.minhaMesa__panel .link-title { max-width: 100%; }
+
+.minhaMesa__panel:not(.is-open) .ms-Panel-commands,
+.minhaMesa__panel:not(.is-open) .box__title { max-height: 0; }
+
+.minhaMesa__panel:not(.is-open) .link-title { max-width: 0; }
+.minhaMesa__panel:not(.is-open) .ms-Panel-commands,
+.minhaMesa__panel:not(.is-open) .box__title,
+.minhaMesa__panel:not(.is-open) .link-title {
+	opacity: 0;
+	overflow: hidden;
+	pointer-events: none;
+}
+
+.minhaMesa__panel:not(.is-open) .box {
+	background-color: transparent;
+    border-radius: 0;
+    box-shadow: none;
+    padding: 0;
+}
+
+.minhaMesa__panel:not(.is-open) .box__container { padding: 0 0 0 10px; }
+
+.minhaMesa__panel:not(.is-open) .icon-container { margin-right: 0; }
+
+.minhaMesa__panel:not(.is-open) .link-title { max-width: 0; }

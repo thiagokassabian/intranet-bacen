@@ -5,11 +5,13 @@ import {
 	PropertyPaneTextField,
 	type IPropertyPaneConfiguration,
 	PropertyPaneToggle,
-	PropertyPaneChoiceGroup
+	PropertyPaneChoiceGroup,
+	IPropertyPaneField,
+	IPropertyPaneTextFieldProps
 } from '@microsoft/sp-property-pane';
 import { BaseClientSideWebPart } from '@microsoft/sp-webpart-base';
 
-import * as strings from 'SaudacaoWebPartStrings';
+import strings from 'SaudacaoWebPartStrings';
 import Saudacao from './components/Saudacao';
 import { ISaudacaoProps } from './components/ISaudacaoProps';
 
@@ -46,7 +48,7 @@ export default class SaudacaoWebPart extends BaseClientSideWebPart<ISaudacaoWebP
 	}
 
 	protected getPropertyPaneConfiguration(): IPropertyPaneConfiguration {
-		const messageFields = [];
+		const messageFields: IPropertyPaneField<IPropertyPaneTextFieldProps>[] = [];
 
 		if (!this.properties.timeBasedMessage) {
 			messageFields.push(PropertyPaneTextField("greetingMessage", {

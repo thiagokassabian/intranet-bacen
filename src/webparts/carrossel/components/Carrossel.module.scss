@@ -1,8 +1,26 @@
 @import "~@fluentui/react/dist/sass/References";
 
-@mixin bg-gradient-base($deg, $pos1: "0", $pos2: "100%") {
-	background: linear-gradient(#{$deg}, #212727 #{$pos1}, rgba(33, 39, 39, 0) #{$pos2});
+@property --myColor1 {
+  syntax: '<color>';
+  initial-value: #212727;
+  inherits: false;
 }
+@property --myColor2 {
+  syntax: '<color>';
+  initial-value: rgba(33, 39, 39, 0);
+  inherits: false;
+}
+
+@mixin bg-gradient-base($deg, $pos1: "0", $pos2: "100%") {
+	// background: linear-gradient(#{$deg}, #212727 #{$pos1}, rgba(33, 39, 39, 0) #{$pos2});
+	background: linear-gradient(#{$deg}, var(--myColor1), var(--myColor2));
+}
+
+@mixin bg-gradient-transparent {
+	--myColor1: rgba(33, 39, 39, 0);
+	--myColor2: rgba(33, 39, 39, 0);
+}
+
 
 .carrossel {
 	position: relative;
@@ -44,7 +62,7 @@
 			border: none;
 			font-size: 28px;
 			@include ms-fontColor-white;
-			transition: left .5s ease-out, right .5s ease-out, opacity .5s;
+			transition: opacity .3s, left .3s ease-out, right .3s ease-out, --myColor1 .3s .3s, --myColor2 .3s .3s;
 			cursor: pointer;
 
 			&:not(.show) {
@@ -61,6 +79,7 @@
 
 				&:not(.show) {
 					left: -40px;
+					@include bg-gradient-transparent;
 				}
 			}
 			&__next {
@@ -69,6 +88,7 @@
 
 				&:not(.show) {
 					right: -40px;
+					@include bg-gradient-transparent;
 				}
 			}
 

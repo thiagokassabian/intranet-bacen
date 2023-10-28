@@ -7,7 +7,7 @@ import {
 } from '@microsoft/sp-property-pane';
 import { BaseClientSideWebPart } from '@microsoft/sp-webpart-base';
 
-import * as strings from 'ListaLinksWebPartStrings';
+import strings from 'ListaLinksWebPartStrings';
 import ListaLinks from './components/ListaLinks';
 import { IListaLinksProps } from './components/IListaLinksProps';
 import { PropertyFieldListPicker, PropertyFieldListPickerOrderBy } from '@pnp/spfx-property-controls/lib/PropertyFieldListPicker';

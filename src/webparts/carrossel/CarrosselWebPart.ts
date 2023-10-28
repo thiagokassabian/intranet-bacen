@@ -6,7 +6,7 @@ import {
 } from '@microsoft/sp-property-pane';
 import { BaseClientSideWebPart } from '@microsoft/sp-webpart-base';
 
-import * as strings from 'CarrosselWebPartStrings';
+import strings from 'CarrosselWebPartStrings';
 import Carrossel from './components/Carrossel';
 import { ICarrosselProps } from './components/ICarrosselProps';
 

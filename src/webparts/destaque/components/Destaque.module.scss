@@ -4,6 +4,10 @@
 .destaque {
 	margin: 24px 0;
 
+	.placeholder [class^="placeholderContainer-"] {
+		padding: 30px 0;
+	}
+
 	.image {
 		// padding-bottom: 60%;
 		aspect-ratio: 16 / 9;
@@ -35,11 +39,12 @@
 		&__title {
 			@include ms-fontSize-28;
 			@include ms-fontWeight-semibold;
-			margin: 0 0 10px;
+			margin: 0;
 		}
 
 		&__lead {
 			@include ms-fontSize-18;
+			margin-top: 10px;
 		}
 	}
 

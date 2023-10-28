@@ -23,12 +23,12 @@ const Home: React.FunctionComponent<IHomeProps> = props => {
 		destaqueSelectedSitePage,
 		redesSociaisColor,
 		redesSociaisListGuid,
-		minhaMesaLists
+		minhaMesaProps
 	} = props
 
 	return (
 		<>
-			<MinhaMesa context={context} lists={minhaMesaLists} />
+			<MinhaMesa context={minhaMesaProps.context} lists={minhaMesaProps.lists} isOpen={minhaMesaProps.isOpen} />
 			<section className={`${styles.home} ${globalStyles.sectionFull}`}>
 				<div>
 					<header>

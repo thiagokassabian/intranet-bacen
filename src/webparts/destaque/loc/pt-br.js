@@ -3,10 +3,10 @@ define([], function () {
 		"PropertyPaneDescription": "Configurações do Destaque",
 		"GroupName": "Destaque",
 
-		"TitleFieldLabel": "Título",
+		"TitleFieldLabel": "Título*",
 		"TextFieldLabel": "Texto",
 		"TagFieldLabel": "Tag",
-		"FilePickerFieldLabel": "Imagem",
+		"FilePickerFieldLabel": "Imagem*",
 		"FilePickerButtonLabel": "Selecionar",
 		"UrlFieldLabel": "URL",
 		"SelectedPageFieldLabel": "Páginas do Site",
