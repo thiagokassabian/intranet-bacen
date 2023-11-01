@@ -30,7 +30,13 @@
         "title": "webparts Feature",
         "description": "The feature that activates elements of the webparts solution.",
         "id": "8db1dbc0-8ed7-41d2-816a-20f606eb7a0f",
-        "version": "1.0.0.0"
+        "version": "1.0.0.0",
+        "assets": {
+          "elementManifests": [
+            "elements.xml",
+            "ClientSideInstance.xml"
+          ]
+        }
       }
     ]
   },

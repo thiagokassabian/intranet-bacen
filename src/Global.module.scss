@@ -13,10 +13,17 @@
 }
 
 .sectionFull {
-	height: 100vh;
+	// height: 100vh;
 	background: #000 url(assets/img/funcoes-do-banco-central-do-brasil.png) no-repeat center top;
 	background-size: cover;
+	position: relative;
 	@include ms-fontColor-white;
+	@media (min-width: 992px) {
+		height: calc(100vh - 48px);
+	}
+	@media (max-width: 991px) {
+		padding-bottom: 15px;
+	}
 
 
 	&::before {

@@ -49,6 +49,14 @@
           "manifest": "./src/webparts/carrossel/CarrosselWebPart.manifest.json"
         }
       ]
+    },
+    "hide-element-application-customizer": {
+      "components": [
+        {
+          "entrypoint": "./lib/extensions/hideElement/HideElementApplicationCustomizer.js",
+          "manifest": "./src/extensions/hideElement/HideElementApplicationCustomizer.manifest.json"
+        }
+      ]
     }
   },
   "externals": {},
@@ -60,6 +68,7 @@
     "MinhaMesaWebPartStrings": "lib/webparts/minhaMesa/loc/{locale}.js",
     "SaudacaoWebPartStrings": "lib/webparts/saudacao/loc/{locale}.js",
     "ListaLinksWebPartStrings": "lib/webparts/listaLinks/loc/{locale}.js",
-    "CarrosselWebPartStrings": "lib/webparts/carrossel/loc/{locale}.js"
+    "CarrosselWebPartStrings": "lib/webparts/carrossel/loc/{locale}.js",
+    "HideElementApplicationCustomizerStrings": "lib/extensions/hideElement/loc/{locale}.js"
   }
 }

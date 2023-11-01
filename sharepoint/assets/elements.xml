@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+    <CustomAction
+        Title="HideElement"
+        Location="ClientSideExtension.ApplicationCustomizer"
+        ClientSideComponentId="3537922b-c847-4ec0-abda-4bacfe0a2705"
+        ClientSideComponentProperties="{&quot;elementId&quot;:&quot;&quot;}">
+    </CustomAction>
+</Elements>

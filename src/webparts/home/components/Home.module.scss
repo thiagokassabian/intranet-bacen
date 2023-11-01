@@ -4,4 +4,9 @@
 	a {
 		color: $ms-color-white !important;
 	}
+
+	&__content {
+		position: relative;
+		z-index: 1;
+	}
 }

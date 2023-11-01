@@ -30,7 +30,7 @@ const Home: React.FunctionComponent<IHomeProps> = props => {
 		<>
 			<MinhaMesa context={minhaMesaProps.context} lists={minhaMesaProps.lists} isOpen={minhaMesaProps.isOpen} />
 			<section className={`${styles.home} ${globalStyles.sectionFull}`}>
-				<div>
+				<div className={styles.home__content}>
 					<header>
 						<a href="#">
 							<img src={require("../../../assets/img/logo-bacen.png")} alt="Banco Central do Brasil" />

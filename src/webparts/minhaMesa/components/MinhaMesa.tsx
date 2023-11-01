@@ -104,7 +104,8 @@ const MinhaMesa: React.FunctionComponent<IMinhaMesaProps> = props => {
 				className="minhaMesa__panel"
 				styles={{
 					main: {
-						animation: "unset"
+						animation: "unset",
+						inset: "48px 0 0 auto"
 					},
 					hiddenPanel: {
 						visibility: "unset"

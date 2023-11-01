@@ -11,9 +11,9 @@ import { Icon } from "@fluentui/react"
 const responsive = {
 	0: { items: 1 },
 	576: { items: 2 },
-	992: { items: 3 },
-	1200: { items: 4 }
-	// 1400: { items: 5 }
+	1000: { items: 3 },
+	1400: { items: 4 },
+	1800: { items: 5 }
 }
 
 const Carrossel: React.FunctionComponent<ICarrosselProps> = props => {

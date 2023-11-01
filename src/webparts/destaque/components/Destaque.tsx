@@ -50,7 +50,7 @@ const Destaque: React.FunctionComponent<IDestaqueProps> = props => {
 				<a href={selectedSitePage ? (page ? "SitePages/" + page.Title + ".aspx" : "#") : destaque.Url}>
 					<div className={`${styles["container-fluid"]} ${styles["gx-0"]}`}>
 						<div className={styles.row}>
-							<div className={`${styles["col-lg-7"]} ${styles["mb-2"]} ${styles["mb-lg-0"]}`}>
+							<div className={`${styles["col-lg-6"]} ${styles["mb-2"]} ${styles["mb-lg-0"]}`}>
 								<div
 									className={`${styles.image}`}
 									style={{
@@ -68,7 +68,7 @@ const Destaque: React.FunctionComponent<IDestaqueProps> = props => {
 									}}
 								/>
 							</div>
-							<div className={`${styles["col-lg-5"]}`}>
+							<div className={`${styles["col-lg-6"]}`}>
 								<div className={styles.text}>
 									{((selectedSitePage && page) || destaque.Tag) && (
 										<div className={styles.text__tag}>

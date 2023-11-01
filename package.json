@@ -30,7 +30,10 @@
     "react-alice-carousel": "^2.8.0",
     "react-dom": "^17.0.1",
     "styled-components": "^6.0.9",
-    "tslib": "2.3.1"
+    "tslib": "2.3.1",
+    "@microsoft/decorators": "1.18.0",
+    "@microsoft/sp-dialog": "1.18.0",
+    "@microsoft/sp-application-base": "1.18.0"
   },
   "devDependencies": {
     "@microsoft/eslint-config-spfx": "1.18.0",

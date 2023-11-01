@@ -151,10 +151,6 @@ export default class MinhaMesaWebPart extends BaseClientSideWebPart<IMinhaMesaWe
 		console.log(this.isEditMode);
 	}
 
-	protected onPropertyPaneFieldChanged(propertyPath: string, oldValue: any, newValue: any): void {
-		console.log(propertyPath, oldValue, newValue);
-	}
-
 	protected getPropertyPaneConfiguration(): IPropertyPaneConfiguration {
 		return {
 			pages: [
