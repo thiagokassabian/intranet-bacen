@@ -21,7 +21,7 @@ export default class CarrosselWebPart extends BaseClientSideWebPart<ICarrosselWe
 		const element: React.ReactElement<ICarrosselProps> = React.createElement(
 			Carrossel,
 			{
-
+				context: this.context
 			}
 		);
 

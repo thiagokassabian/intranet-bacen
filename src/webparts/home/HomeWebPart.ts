@@ -31,8 +31,14 @@ import { PropertyFieldListPicker, PropertyFieldListPickerOrderBy } from '@pnp/sp
 import { PropertyFieldColorPicker, PropertyFieldColorPickerStyle } from '@pnp/spfx-property-controls/lib/PropertyFieldColorPicker';
 import { getLists, getSP } from '../pnpjsConfig';
 import { IDropdownList } from '../interfaces';
+import { SPFx, spfi } from '@pnp/sp';
+// import "@pnp/sp/profiles";
+// import { MSGraphClientV3 } from '@microsoft/sp-http';
+// import * as MicrosoftGraph from '@microsoft/microsoft-graph-types';
 
-interface IFields extends IPropertyPaneField<IPropertyPaneTextFieldProps | IPropertyPaneDropdownProps | IPropertyPaneButtonProps> { }
+type IFields = IPropertyPaneField<IPropertyPaneTextFieldProps | IPropertyPaneDropdownProps | IPropertyPaneButtonProps>;
+
+// interface IFields extends IPropertyPaneField<IPropertyPaneTextFieldProps | IPropertyPaneDropdownProps | IPropertyPaneButtonProps> { }
 
 export interface IHomeWebPartProps {
 	// Saudacao
@@ -103,7 +109,6 @@ export default class HomeWebPart extends BaseClientSideWebPart<IHomeWebPartProps
 				// Minha Mesa
 				minhaMesaLists: this.properties.minhaMesaLists,
 				minhaMesaProps: {
-					lists: this.properties.minhaMesaLists,
 					context: this.context,
 					isOpen: true
 				},
@@ -123,9 +128,58 @@ export default class HomeWebPart extends BaseClientSideWebPart<IHomeWebPartProps
 		getSP(this.context);
 
 		//* Pegar itens de lista de outro site
-		// const webUrl = `${this.context.pageContext.web.absoluteUrl}/sites/Supim01`;
-		// const sp2 = spfi(webUrl).using(SPFx(this.context));
+		const webUrl = `${this.context.pageContext.web.absoluteUrl}/sites/Home`;
+		const sp2 = spfi(webUrl).using(SPFx(this.context));
 		// await sp2.web.lists.getByTitle('Fornecedores').items.select('Title', 'ID')().then(console.log);
+		const listsHome = await sp2.web.lists.getById("1c1a6555-1ae5-479e-aeec-8406a637e5e5").items.select('Title', 'ID')().then(console.log);
+		console.log(listsHome);
+
+		// async function msgraph(): Promise<void> {
+		// 	const sp = spfi(this.context);
+		// 	const profile = await sp.profiles.getPropertiesFor()
+		// 	console.log(profile.DisplayName);
+		// 	console.log(profile.Email);
+		// 	console.log(profile.Title);
+		// 	console.log(profile.UserProfileProperties.length);
+
+		// 	// Properties are stored in inconvenient Key/Value pairs,
+		// 	// so parse into an object called userProperties
+		// 	const props = {};
+		// 	profile.UserProfileProperties.forEach((prop: any) => {
+		// 		props[prop.Key] = prop.Value;
+		// 	});
+
+		// 	profile.userProperties = props;
+		// 	console.log("Account Name: " + profile.userProperties.AccountName);
+
+		// 	console.log(sp);
+		// this.context.msGraphClientFactory
+		// 	.getClient('3')
+		// 	.then(async (client: MSGraphClientV3) => {
+		// 		// use MSGraphClient here
+		// 		await client
+		// 			.api('/me')
+		// 			.get((error: any, user: MicrosoftGraph.User, rawResponse?: any) => {
+		// 				// handle the response
+		// 				console.log(user);
+		// 			});
+		// 	});
+
+		// this.context.msGraphClientFactory
+		// 	.getClient()
+		// 	.then((client: MSGraphClient): void => {
+		// 		client.api('/users').get(async (error: any, users: any, rawResponse?: any) => {
+		// 			//console.log(users.value);
+		// 			for (const user of users.value) {
+		// 				console.log(user.userPrincipalName);
+		// 				const loginName = "i:0#.f|membership|" + user.userPrincipalName;
+		// 				const profile = await sp.profiles.getPropertiesFor(loginName);
+		// 				console.log(profile);
+		// 			}
+		// 		});
+		// 	});
+		// }
+		// msgraph()
 
 
 		const sitePages = await this._getSitePages();

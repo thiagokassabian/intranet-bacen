@@ -7,6 +7,8 @@ import AliceCarousel, { EventObject } from "react-alice-carousel"
 import "react-alice-carousel/lib/alice-carousel.css"
 import "./carrossel-custom.css"
 import { Icon } from "@fluentui/react"
+import { SPFx, spfi } from "@pnp/sp"
+import { WebPartContext } from "@microsoft/sp-webpart-base"
 
 const responsive = {
 	0: { items: 1 },
@@ -16,7 +18,12 @@ const responsive = {
 	1800: { items: 5 }
 }
 
-const Carrossel: React.FunctionComponent<ICarrosselProps> = props => {
+type Props = {
+	context: WebPartContext
+}
+
+const Carrossel: React.FunctionComponent<ICarrosselProps> = (props: Props) => {
+	const { context } = props
 	const carouselRef = useRef<AliceCarousel>({} as AliceCarousel)
 	const [showBtnPrev, setShowBtnPrev] = useState<boolean>(false)
 	const [showBtnNext, setShowBtnNext] = useState<boolean>(true)
@@ -25,6 +32,20 @@ const Carrossel: React.FunctionComponent<ICarrosselProps> = props => {
 	const data = [1, 2, 3, 4, 5]
 
 	const element = document.querySelector("#spPageChromeAppDiv")
+
+	const getPages = async (): Promise<void> => {
+		//* Pegar itens de lista de outro site
+		const webUrl = `${context.pageContext.web.absoluteUrl}/sites/Home`
+		console.log(webUrl)
+		const sp2 = spfi(webUrl).using(SPFx(context))
+		console.log(sp2)
+		// await sp2.web.lists.getByTitle("Fornecedores").items.select("Title", "ID")().then(console.log)
+		const listsHome = await sp2.web.lists()
+		// .getById("1c1a6555-1ae5-479e-aeec-8406a637e5e5").items.select("Title", "ID")().then(console.log)
+		console.log(listsHome)
+	}
+	getPages().catch(console.log)
+
 	useEffect(() => {
 		if (element) {
 			const observer = new ResizeObserver(mutationRecords => {

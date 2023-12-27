@@ -14,8 +14,11 @@
   "dependencies": {
     "@fluentui/react": "^8.106.4",
     "@fluentui/react-hooks": "^8.6.30",
+    "@microsoft/decorators": "1.18.0",
+    "@microsoft/sp-application-base": "1.18.0",
     "@microsoft/sp-component-base": "1.18.0",
     "@microsoft/sp-core-library": "1.18.0",
+    "@microsoft/sp-dialog": "1.18.0",
     "@microsoft/sp-lodash-subset": "1.18.0",
     "@microsoft/sp-office-ui-fabric-core": "1.18.0",
     "@microsoft/sp-property-pane": "1.18.0",
@@ -30,14 +33,12 @@
     "react-alice-carousel": "^2.8.0",
     "react-dom": "^17.0.1",
     "styled-components": "^6.0.9",
-    "tslib": "2.3.1",
-    "@microsoft/decorators": "1.18.0",
-    "@microsoft/sp-dialog": "1.18.0",
-    "@microsoft/sp-application-base": "1.18.0"
+    "tslib": "2.3.1"
   },
   "devDependencies": {
     "@microsoft/eslint-config-spfx": "1.18.0",
     "@microsoft/eslint-plugin-spfx": "1.18.0",
+    "@microsoft/microsoft-graph-types": "^2.38.0",
     "@microsoft/rush-stack-compiler-4.7": "0.1.0",
     "@microsoft/sp-build-web": "1.18.0",
     "@microsoft/sp-module-interfaces": "1.18.0",

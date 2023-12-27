@@ -30,10 +30,10 @@ const Destaque: React.FunctionComponent<IDestaqueProps> = props => {
 	// 	if (!selectedSitePage) setPage(null)
 	// }, [selectedSitePage])
 
-	console.log(!page)
-	console.log(page !== null)
-	console.log(selectedPageId)
-	console.log(destaque)
+	// console.log(!page)
+	// console.log(page !== null)
+	// console.log(selectedPageId)
+	// console.log(destaque)
 
 	return (
 		<div className={styles.destaque}>
@@ -69,7 +69,7 @@ const Destaque: React.FunctionComponent<IDestaqueProps> = props => {
 								/>
 							</div>
 							<div className={`${styles["col-lg-6"]}`}>
-								<div className={styles.text}>
+								<div className={`${styles.text} destaque-texts`}>
 									{((selectedSitePage && page) || destaque.Tag) && (
 										<div className={styles.text__tag}>
 											{selectedSitePage ? (page ? page.OData__TopicHeader : null) : destaque.Tag}

@@ -28,7 +28,7 @@ const Home: React.FunctionComponent<IHomeProps> = props => {
 
 	return (
 		<>
-			<MinhaMesa context={minhaMesaProps.context} lists={minhaMesaProps.lists} isOpen={minhaMesaProps.isOpen} />
+			<MinhaMesa context={minhaMesaProps.context} isOpen={minhaMesaProps.isOpen} />
 			<section className={`${styles.home} ${globalStyles.sectionFull}`}>
 				<div className={styles.home__content}>
 					<header>
@@ -60,7 +60,7 @@ const Home: React.FunctionComponent<IHomeProps> = props => {
 								/>
 							</div>
 							<div>
-								<Carrossel />
+								<Carrossel context={context} />
 							</div>
 						</div>
 					</main>
