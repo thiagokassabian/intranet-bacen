@@ -7,4 +7,6 @@ export interface IDestaqueProps {
 	selectedPageId: number;
 	selectedSitePage: boolean;
 	destaque: IDestaque;
+	video?: string;
+	imageOrVideo?: string;
 }

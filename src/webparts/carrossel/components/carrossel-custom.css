@@ -1,0 +1,3 @@
+.carrossel .left.show { left: 0; }
+.carrossel .right.show { right: 0; }
+.carrossel .d-none { display: none; }

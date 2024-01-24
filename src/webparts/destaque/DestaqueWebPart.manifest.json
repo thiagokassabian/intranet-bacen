@@ -22,7 +22,8 @@
     "description": { "default": "Destaque description" },
     "officeFabricIconFontName": "Page",
     "properties": {
-		"isSitePages": false
+		"isSitePages": false,
+		"imageOrVideo": "image"
 	}
   }]
 }

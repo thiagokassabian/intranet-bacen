@@ -97,7 +97,6 @@ export default class HomeWebPart extends BaseClientSideWebPart<IHomeWebPartProps
 				destaquePage: {
 					Title: this.properties.destaqueTitle,
 					Text: this.properties.destaqueText,
-					Tag: this.properties.destaqueTag,
 					Image: this.properties.destaqueFilePickerResult,
 					Url: this.properties.destaqueUrl
 				},
@@ -350,9 +349,6 @@ export default class HomeWebPart extends BaseClientSideWebPart<IHomeWebPartProps
 				PropertyPaneTextField("destaqueText", {
 					label: destaqueStrings.TextFieldLabel,
 					multiline: true
-				}),
-				PropertyPaneTextField("destaqueTag", {
-					label: destaqueStrings.TagFieldLabel
 				}),
 				PropertyFieldFilePicker('DestaqueImage', {
 					context: this.context as any,

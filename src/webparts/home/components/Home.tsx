@@ -8,6 +8,7 @@ import Destaque from "../../destaque/components/Destaque"
 import ListaLinks from "../../listaLinks/components/ListaLinks"
 import MinhaMesa from "../../minhaMesa/components/MinhaMesa"
 import Carrossel from "../../carrossel/components/Carrossel"
+import { carrossel } from "../../carrossel/components/script"
 
 const Home: React.FunctionComponent<IHomeProps> = props => {
 	const {
@@ -25,6 +26,10 @@ const Home: React.FunctionComponent<IHomeProps> = props => {
 		redesSociaisListGuid,
 		minhaMesaProps
 	} = props
+
+	React.useEffect(() => {
+		carrossel("carrossel-custom")
+	})
 
 	return (
 		<>
@@ -59,7 +64,7 @@ const Home: React.FunctionComponent<IHomeProps> = props => {
 									selectedSitePage={destaqueSelectedSitePage}
 								/>
 							</div>
-							<div>
+							<div className={styles.carrossel}>
 								<Carrossel context={context} />
 							</div>
 						</div>

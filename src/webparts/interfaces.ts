@@ -35,7 +35,6 @@ export type IDropdownList = {
 export interface IDestaque {
 	Title: string;
 	Text: string;
-	Tag: string;
 	Image: IFilePickerResult;
 	Url: string;
 }
